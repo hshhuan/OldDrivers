@@ -2,4 +2,4 @@
 
 -----
 
-HTML5/CSS/JavaScript
+采用AngularJS

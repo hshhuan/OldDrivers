@@ -1,0 +1,75 @@
+## 第一次迭代 前后端API协商
+----
+### data format
+
+	//User
+	var user = {
+	
+		"id":string,
+	
+		"name":string,
+	
+		"gender":string,
+	
+		"age":number,
+	
+		"phone":string,
+	
+		"email":string,
+	
+		// 头像
+		//"avatar":string
+
+	}
+	
+	//Movie
+	var movie = {
+	
+		"name":string
+	
+		"cover":string, //封面
+	
+		"date": string, //YYYY-MM-DD
+	
+		"description":string,
+	
+		"score":number
+
+	}
+
+	//Message
+	var msg {
+
+		"state":number,
+
+		"error"array(number),
+
+		"user":object(user),
+
+	}
+
+#### state in Message
+
+|state|   detail       |
+|-----|----------------|
+|200  |succeed         |
+|400  |failed          |
+|401  |name existed    |
+|402  |phone existed   |
+|403  |email existed   |
+|404  |user not exist  |
+|405  |password error  |
+
+----
+
+### URL Mapping
+
+|front-end URL|back-end return|asynchronous request|URL             |
+|-------------|---------------|--------------------|----------------|
+|/, /index    |index          |movies              |/api/movies     |
+|/login       |index          |msg                 |/api/users/login|
+|/regist      |index          |msg                 |/api/users/add  |
+|/profile     |index          |msg                 |/api/users/{id} |
+
+
+------
