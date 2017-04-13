@@ -38,13 +38,22 @@
 	}
 
 	//Message
-	var msg {
+	var messsage = {
 
 		"state":number,
 
 		"error"array(number),
 
 		"user":object(user),
+
+	}
+
+	//Login Form
+	var form = {
+
+		name:string,
+
+		password:String
 
 	}
 
@@ -64,12 +73,18 @@
 
 ### URL Mapping
 
-|front-end URL|back-end return|asynchronous request|URL             |
-|-------------|---------------|--------------------|----------------|
-|/, /index    |index          |movies              |/api/movies     |
-|/login       |index          |msg                 |/api/users/login|
-|/regist      |index          |msg                 |/api/users/add  |
-|/profile     |index          |msg                 |/api/users/{id} |
+|URL			  |Method|Parameter|Accept    |
+|-----------------|------|---------|----------|
+|/    			  |GET	 |		   |index.html|
+|/index 		  |GET	 |         |index.html|
+|/login  		  |GET	 |         |index.html|
+|/regist 		  |GET 	 |         |index.html|
+|/profile  		  |GET 	 |         |index.html|
+|/api/movies      |GET 	 |		   |movie list|
+|/api/users/{id}  |GET 	 |		   |message   |
+|/api/users/login |POST	 |form	   |message	  |
+|/api/users/add   |POST	 |user	   |message   |
+|/api/users/update|POST	 |user	   |message   |
 
 
 ------
