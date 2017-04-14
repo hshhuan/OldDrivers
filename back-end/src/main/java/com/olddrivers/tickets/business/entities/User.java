@@ -1,61 +1,64 @@
-package com.olddrivers.tickets.bussiness.entities;
+package com.olddrivers.tickets.business.entities;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Table;
 
+import com.olddrivers.tickets.util.RegistForm;
+
+import javax.persistence.Id;
+
+
+@Entity
+@Table(name = "user")
 public class User implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	
-	public enum Gender {
-		MALE("MALE"), FEMALE("FEMALE");
-
-	    private String type;
-
-	    public static Gender parse(String type) {
-	        if (type == null) {
-	            throw new IllegalArgumentException("Type cannot be null for Gender");
-	        }
-	        if (type.toUpperCase().equals("MALE")) {
-	            return MALE;
-	        } else if (type.toUpperCase().equals("FEMALE")) {
-	            return FEMALE;
-	        }
-	        throw new IllegalArgumentException("Type \"" + type + "\" does not correspond to any Gender");
-	    }
-	    
-	    
-	    private Gender(String type) {
-	        this.type = type;
-	    }
-	    
-	    
-	    public String getType() {
-	        return this.type;
-	    }
-	    
-	    
-	    @Override
-	    public String toString() {
-	        return getType();
-	    }
-	}
-	
+	@Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
 	private long id;
+	
+	@Column(name = "name", unique = true)
 	private String name;
+	
+	@Column(name = "password")
 	private String password;
-	private Gender gender;
+	
+	@Column(name = "gender")
+	private String gender;
+	
+	@Column(name = "age")
 	private Integer age;
+	
+	@Column(name = "phone")
 	private String phone;
+	
+	@Column(name = "email")
 	private String email;
 	
 	//private String avatar;
 	
-	public User(String name, String password) {
+	//@Transient
+	// Gender gender;
+	
+	public User() {
 		super();
 		
-		this.name = name;
-		this.password = password;
+	}
+	
+	public User(RegistForm registForm) {
+		super();
+		
+		this.name = registForm.getName();
+		this.password = registForm.getPassword();
+		this.email = registForm.getEmail();
+		
 	}
 	
 	public long getId() {
@@ -77,10 +80,10 @@ public class User implements Serializable {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public Gender getGender() {
+	public String getGender() {
 		return this.gender;
 	}
-	public void setGender(Gender gender) {
+	public void setGender(String gender) {
 		this.gender = gender;
 	}
 	public Integer getAge() {
@@ -110,11 +113,12 @@ public class User implements Serializable {
         .append("\"id\":").append(id).append(",")
         .append("\"name\":\"").append(name).append("\",")
         .append("\"password\":\"").append(password).append("\",")
-        .append("\"gender\":\"").append(gender.getType()).append("\",")
+        .append("\"gender\":\"").append(gender).append("\",")
         .append("\"age\":").append(age).append(",")
         .append("\"phone\":\"").append(phone).append("\",")
         .append("\"email\":\"").append(email).append("\"")
         .append("}");
         return builder.toString();
     }
+	
 }

@@ -1,13 +1,15 @@
 ## 第一次迭代 前后端API协商
 ----
 ### data format
-
+	/*Entity*/
 	//User
-	var user = {
+	var User = {
 	
 		"id":string,
 	
 		"name":string,
+
+		"password":string,
 	
 		"gender":string,
 	
@@ -23,7 +25,7 @@
 	}
 	
 	//Movie
-	var movie = {
+	var Movie = {
 	
 		"name":string
 	
@@ -36,9 +38,10 @@
 		"score":number
 
 	}
-
+	
+	/**/
 	//Message
-	var messsage = {
+	var Message = {
 
 		"state":number,
 
@@ -48,14 +51,42 @@
 
 	}
 
-	//Login Form
-	var form = {
+	//LoginForm
+	var LoginForm = {
 
-		name:string,
+		"name":string,
 
-		password:String
+		"password":string
 
 	}
+
+	//RegistForm
+	var RegistForm = {
+
+		"name":string,
+
+		"email":string
+
+		"password":string,
+
+	}
+
+	/* seems don't need
+	//UpdateForm
+	var UpdateForm = {
+	
+		"name":string,
+	
+		"gender":string,
+	
+		"age":number,
+	
+		"phone":string,
+	
+		"email":string,
+
+	}
+	*/
 
 #### state in Message
 
@@ -73,18 +104,18 @@
 
 ### URL Mapping
 
-|URL			  |Method|Parameter|Accept    |
-|-----------------|------|---------|----------|
-|/    			  |GET	 |		   |index.html|
-|/index 		  |GET	 |         |index.html|
-|/login  		  |GET	 |         |index.html|
-|/regist 		  |GET 	 |         |index.html|
-|/profile  		  |GET 	 |         |index.html|
-|/api/movies      |GET 	 |		   |movie list|
-|/api/users/{id}  |GET 	 |		   |message   |
-|/api/users/login |POST	 |form	   |message	  |
-|/api/users/add   |POST	 |user	   |message   |
-|/api/users/update|POST	 |user	   |message   |
+|URL			  		|Method--|Parameter		|Accept    |
+|-----------------------|--------|--------------|----------|
+|/    			  		|GET	 |		   		|index.html|
+|/index 		  		|GET	 |         		|index.html|
+|/login  		  		|GET	 |         		|index.html|
+|/regist 		  		|GET 	 |        		|index.html|
+|/profile  		  		|GET 	 |         		|index.html|
+|/api/movies      		|GET 	 |		   		|movie list|
+|/api/users/{id}  		|GET 	 |		   		|message   |
+|/api/users/login 		|POST	 |LoginForm	    |message   |
+|/api/users/add   		|POST	 |RegistForm	|message   |
+|/api/users/update/{id} |POST	 |User			|message   |
 
 
 ------
