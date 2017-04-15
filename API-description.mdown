@@ -115,7 +115,7 @@
 |/api/users/{id}  		|GET 	 |		   		|message   |
 |/api/users/login 		|POST	 |LoginForm	    |message   |
 |/api/users/add   		|POST	 |RegistForm	|message   |
-|/api/users/update/{id} |POST	 |User			|message   |
+|/api/users/update/		|POST	 |User			|message   |
 
 
 ------
