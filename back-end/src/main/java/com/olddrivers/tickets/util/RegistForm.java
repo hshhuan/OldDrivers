@@ -3,14 +3,12 @@ package com.olddrivers.tickets.util;
 public class RegistForm {
 	
 	private String name;
-	private String email;
+	private String phone;
 	private String password;
 	
-	public RegistForm(String name, String email, String password) {
+	public RegistForm() {
+		super();
 		
-		this.name = name;
-		this.email = email;
-		this.password = password;
 	}
 
 	public String getName() {
@@ -21,14 +19,6 @@ public class RegistForm {
 		this.name = name;
 	}
 
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
 	public String getPassword() {
 		return password;
 	}
@@ -37,5 +27,18 @@ public class RegistForm {
 		this.password = password;
 	}
 	
+	@Override
+	public String toString() {
+		return "registForm: " +
+					this.name+" , "+this.password + " , " + this.phone;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
 	
 }

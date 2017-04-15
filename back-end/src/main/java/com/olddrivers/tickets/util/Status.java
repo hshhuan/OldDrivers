@@ -1,4 +1,4 @@
-package com.olddrivers.tickets.business.entities;
+package com.olddrivers.tickets.util;
 
 public enum Status {
 	

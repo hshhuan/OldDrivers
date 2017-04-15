@@ -2,31 +2,34 @@ package com.olddrivers.tickets.util;
 
 public class LoginForm {
 	
-	private String name;
+	private String phone;
 	private String password;
 	
-	public LoginForm(String name, String password) {
+	public LoginForm() {
 		super();
 		
-		this.name = name;
-		this.password = password;
 	}
 	
+	public String getPhone() {
+		return phone;
+	}
 
-	public String getData1() {
-		return name;
+
+	public void setPhone(String phone) {
+		this.phone = phone;
 	}
 	
-	public void setData1(String name) {
-		this.name = name;
-	}
-	
-	public String getData2() {
+	public String getPassword() {
 		return password;
 	}
 
-	public void setData2(String password) {
+	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	@Override
+	public String toString() {
+		return "loginForm: " + this.phone+" , "+this.password;
 	}
 
 }

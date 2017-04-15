@@ -27,21 +27,37 @@ public class APIController {
 	
 	@RequestMapping("/users/{id}")
 	@ResponseBody
-	User FindOne(@PathVariable("id") Long id) {
+	User FindOne(@PathVariable("id") String id) {
 		return userService.findOne(id);
+	}
+	
+	@RequestMapping("/users/findByName/{name}")
+	@ResponseBody
+	User FindByName(@PathVariable("name") String name) {
+		return userService.findByName(name);
 	}
 	
 	
 	@RequestMapping("/users/login")
 	@ResponseBody
 	Message Login(@RequestBody LoginForm loginForm) {
+		
+		System.out.println(loginForm.toString());
+		
 		return userService.Login(loginForm);
 	}
 	
 	@RequestMapping("/users/add")
 	@ResponseBody
 	Message Add(@RequestBody RegistForm registForm) {
-		return userService.Add(new User(registForm));
+		
+		System.out.println(registForm);
+		
+		Message m = userService.Add(new User(registForm));
+		
+		System.out.println(m.toString());
+		
+		return m;
 	}
 
 	@RequestMapping("/users/update")

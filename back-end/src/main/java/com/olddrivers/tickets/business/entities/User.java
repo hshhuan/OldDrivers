@@ -5,7 +5,6 @@ import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
@@ -24,11 +23,11 @@ public class User implements Serializable {
 	@Id
     //@GeneratedValue(strategy = GenerationType.AUTO)
 	@GeneratedValue(generator = "system-uuid")
-	@GenericGenerator(name="system-uuid", strategy="uuid")
+	@GenericGenerator(name="system-uuid", strategy="org.hibernate.id.UUIDGenerator")
 	@Column(name = "id")
-	private long id;
+	private String id;
 	
-	@Column(name = "name", unique = true)
+	@Column(name = "name")
 	private String name;
 	
 	@Column(name = "password")
@@ -40,7 +39,7 @@ public class User implements Serializable {
 	@Column(name = "age")
 	private Integer age;
 	
-	@Column(name = "phone")
+	@Column(name = "phone", unique = true)
 	private String phone;
 	
 	@Column(name = "email")
@@ -61,14 +60,14 @@ public class User implements Serializable {
 		
 		this.name = registForm.getName();
 		this.password = registForm.getPassword();
-		this.email = registForm.getEmail();
+		this.phone = registForm.getPhone();
 		
 	}
 	
-	public long getId() {
+	public String getId() {
 		return this.id;
 	}
-	public void setId(long id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 	
@@ -100,7 +99,7 @@ public class User implements Serializable {
 	public String getPhone() {
 		return this.phone;
 	}
-	public void setID(String phone) {
+	public void setPhone(String phone) {
 		this.phone = phone;
 	}
 	public String getEmail() {

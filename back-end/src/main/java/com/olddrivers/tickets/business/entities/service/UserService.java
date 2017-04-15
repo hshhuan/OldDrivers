@@ -7,12 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.olddrivers.tickets.business.entities.FailedError;
-import com.olddrivers.tickets.business.entities.Status;
 import com.olddrivers.tickets.business.entities.User;
 import com.olddrivers.tickets.business.entities.repositories.UserRepository;
+import com.olddrivers.tickets.util.FailedError;
 import com.olddrivers.tickets.util.LoginForm;
-import com.olddrivers.tickets.util.Message;;
+import com.olddrivers.tickets.util.Message;
+import com.olddrivers.tickets.util.Status;;
 
 @Service
 @Transactional
@@ -23,11 +23,12 @@ public class UserService {
 
 	public UserService() {
 		super();
+
 	}
 
 	// API
-	
-	public User findOne(final Long id) {
+
+	public User findOne(final String id) {
 		return userRepo.findOne(id);
 	}
 
@@ -35,16 +36,12 @@ public class UserService {
 		return userRepo.findByName(name);
 	}
 
-	public User findByNameAndPassword(final String name, final String password) {
-		return userRepo.findByNameAndPassword(name, password);
+	public User findByPhoneAndPassword(final String phone, final String password) {
+		return userRepo.findByPhoneAndPassword(phone, password);
 	}
 
 	public User findByPhone(final String phone) {
-		return userRepo.findByName(phone);
-	}
-
-	public User findByEmail(final String email) {
-		return userRepo.findByName(email);
+		return userRepo.findByPhone(phone);
 	}
 
 	public List<User> findAll() {
@@ -52,40 +49,31 @@ public class UserService {
 	}
 
 	public Message Login(LoginForm loginForm) {
-		ArrayList<FailedError> errorList = new ArrayList<FailedError>();
-		if (findByName(loginForm.getData1()) == null) {
-			errorList.add(FailedError.USER_NOT_EXISTED);
+		if (findByPhone(loginForm.getPhone()) == null) {
+			return new Message(Status.FAILED, FailedError.USER_NOT_EXISTED, new User());
 		} else {
-			User data = findByNameAndPassword(loginForm.getData1(), loginForm.getData2());
+			User data = findByPhoneAndPassword(loginForm.getPhone(), loginForm.getPassword());
 			if (data == null) {
-				errorList.add(FailedError.PASSWORD_ERROR);
+				return new Message(Status.FAILED, FailedError.PASSWORD_ERROR, new User());
 			} else {
-				return new Message(Status.SUCCEED, errorList, data);
+				return new Message(Status.SUCCEED, FailedError.NO_ERROR, data);
 			}
 		}
-		return new Message(Status.FAILED, errorList, new User());
 	}
 
-	public Message Add(User data) {
-		ArrayList<FailedError> errorList = new ArrayList<FailedError>();
-		if (findByName(data.getName()) != null) {
-			errorList.add(FailedError.NAME_EXISTED);
-		}
-		else if (findByPhone(data.getPhone()) != null) {
-			errorList.add(FailedError.PHONE_EXISTED);
-		}
-		else if (findByEmail(data.getEmail()) != null) {
-			errorList.add(FailedError.EMAIL_EXISTED);
+	public Message Add(User user) {
+		if (findByPhone(user.getPhone()) == null) {
+			return new Message(Status.SUCCEED, FailedError.NO_ERROR, userRepo.save(user));
 		} else {
-			return new Message(Status.SUCCEED, errorList, userRepo.save(data));
+			return new Message(Status.FAILED, FailedError.PHONE_EXISTED, new User());
 		}
-		return new Message(Status.FAILED, errorList, new User());
 	}
 
 	public Message Update(User user) {
-		
-		//Method CrudRepository.save() can do both create and update
-		return Add(user);
+		if(findOne(user.getId()) != null)
+			return new Message(Status.SUCCEED, FailedError.NO_ERROR, userRepo.save(user));
+		else
+			return new Message(Status.FAILED,FailedError.USER_NOT_EXISTED,new User());
 	}
 
 }

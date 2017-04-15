@@ -45,7 +45,7 @@
 
 		"state":number,
 
-		"error"array(number),
+		"error":[{"errorCode":number}, ...],
 
 		"user":object(user),
 
@@ -71,22 +71,6 @@
 
 	}
 
-	/* seems don't need
-	//UpdateForm
-	var UpdateForm = {
-	
-		"name":string,
-	
-		"gender":string,
-	
-		"age":number,
-	
-		"phone":string,
-	
-		"email":string,
-
-	}
-	*/
 
 #### state in Message
 
@@ -115,7 +99,11 @@
 |/api/users/{id}  		|GET 	 |		   		|message   |
 |/api/users/login 		|POST	 |LoginForm	    |message   |
 |/api/users/add   		|POST	 |RegistForm	|message   |
-|/api/users/update/		|POST	 |User			|message   |
+|/api/users/update		|POST	 |User			|message   |
+
+#### RESTful
+- Client to Server : String in JSON Format
+- Server to Client : JSON Object
 
 
 ------
