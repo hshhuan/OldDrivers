@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,6 +27,7 @@ public class APIController {
 	private UserService userService;
 	private MovieService movieService;
 	
+	
 	@RequestMapping("/users/{id}")
 	@ResponseBody
 	User FindOne(@PathVariable("id") String id) {
@@ -36,8 +39,7 @@ public class APIController {
 	User FindByName(@PathVariable("name") String name) {
 		return userService.findByName(name);
 	}
-	
-	
+
 	@RequestMapping("/users/login")
 	@ResponseBody
 	Message Login(@RequestBody LoginForm loginForm) {
