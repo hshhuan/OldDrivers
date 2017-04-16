@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class TemplateCotroller {
 
-	@RequestMapping({"/", "/index","/login","/regist","/profile"})
+	@RequestMapping({"/", "/index","/login","/regist"})
 	public String index() {
 		return "index";
 	}
