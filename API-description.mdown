@@ -1,6 +1,6 @@
 ## 第一次迭代 前后端API协商
 ----
-### data format
+### Data Format
 	/*Entity*/
 	//User
 	var User = {
@@ -39,13 +39,13 @@
 
 	}
 	
-	/**/
+	/*Request And Response JSON Object*/
 	//Message
 	var Message = {
 
 		"state":number,
 
-		"error":[{"errorCode":number}, ...],
+		"errorCode": number, 
 
 		"user":object(user),
 
@@ -63,26 +63,29 @@
 	//RegistForm
 	var RegistForm = {
 
+		"phone":string
+
 		"name":string,
-
-		"email":string
-
+		
 		"password":string,
 
 	}
 
 
-#### state in Message
+#### state and errorCode in Message
 
 |state|   detail       |
 |-----|----------------|
 |200  |succeed         |
 |400  |failed          |
-|401  |name existed    |
-|402  |phone existed   |
-|403  |email existed   |
-|404  |user not exist  |
-|405  |password error  |
+
+|errorCode|   detail       |
+|---------|----------------|
+|401  	  |name existed    |
+|402	  |phone existed   |
+|403      |email existed   |
+|404      |user not exist  |
+|405      |password error  |
 
 ----
 
