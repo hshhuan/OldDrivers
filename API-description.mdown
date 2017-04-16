@@ -102,7 +102,7 @@
 |/api/users/update		|POST	 |User			|message   |
 
 #### RESTful
-- Client to Server : String in JSON Format
+- Client to Server : JSON Object
 - Server to Client : JSON Object
 
 

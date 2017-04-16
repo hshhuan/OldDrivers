@@ -1,4 +1,4 @@
-package com.olddrivers.crossorigin;
+package com.olddrivers.tickets.crossorigin;
 
 import java.io.IOException;
 
